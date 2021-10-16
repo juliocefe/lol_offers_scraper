@@ -1,6 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import pprint
+# import pprint
 from operator import itemgetter
 
 scope = ['https://spreadsheets.google.com/feeds',
