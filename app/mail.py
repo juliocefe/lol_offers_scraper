@@ -5,7 +5,7 @@ from email.message import EmailMessage
 
 EMAIL_ADDRESS = os.environ.get('MAIL')
 EMAIL_PASSWORD = os.environ.get('PASS')
-EMAIL_CONTACTS = os.environ.get('CONTACTS').split(" ")
+EMAIL_CONTACTS = "juliocesarfelixhz95@gmail.com"
 
 contacts = EMAIL_CONTACTS
 def send_email(found_skins):
