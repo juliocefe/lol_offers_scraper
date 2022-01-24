@@ -24,31 +24,29 @@ YOUR_SPREADSHEET_LINK = os.environ.get('SPREADSHEET')
 def get_remote_driver():
     # Set host to externally accessible web server address
     # host = socket.gethostbyname(socket.gethostname())
-    # more firefox capabilities options
-    # firefox_options = Options()
-    # firefox_options.headless = True
     # Instantiate the remote WebDriver
-    firefox_options = webdriver.FirefoxOptions()
+    chrome_options = webdriver.ChromeOptions()
     selenium = webdriver.Remote(
         #  Set to: htttp://{selenium-container-name}:port/wd/hub
         #  In our example, the container is named `selenium`
         #  and runs on port 4444
         "http://localhost:4444/wd/hub",
-        # Set to FIREFOX since we are using the Firefox container
-        # desired_capabilities=DesiredCapabilities.FIREFOX,
-        options=firefox_options
+        options=chrome_options
     )
     selenium.implicitly_wait(5)
     return selenium
 
 if __name__ == "__main__":
+    print("getting remote driver...")
     driver = get_remote_driver()
     driver.get("https://leagueoflegends.fandom.com/es/wiki/Ofertas")
 
     #Wait 5 seconds until page load
     time.sleep(5)
+    print("getting data from spreadsheet...")
     skins = get_data_from_gsheet(YOUR_SPREADSHEET_LINK)
 
+    print("looking for skings at the page...")
     foundIt = False
     found_skins = []
     for skin in skins:
@@ -69,8 +67,8 @@ if __name__ == "__main__":
 
     # Send me the screenshot and the list of found skins if we got someone
     if foundIt == True:
-        print('checa your email julio :3')
         send_email(found_skins)
+        print('checa your email julio :3')
     else:
         print("""None skin was found :'(""")
     driver.close()
