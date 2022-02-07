@@ -25,6 +25,7 @@ def get_remote_driver():
     # host = socket.gethostbyname(socket.gethostname())
     # Instantiate the remote WebDriver
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--headless")
     selenium = webdriver.Remote(
         #  Set to: htttp://{selenium-container-name}:port/wd/hub
         #  In our example, the container is named `selenium`
