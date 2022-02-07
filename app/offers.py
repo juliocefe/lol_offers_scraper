@@ -10,7 +10,6 @@ from mail import send_email
 from gspread_library import get_data_from_gsheet
 import time
 import os
-import socket
 
 
 YOUR_SPREADSHEET_LINK = os.environ.get('SPREADSHEET')
@@ -30,7 +29,7 @@ def get_remote_driver():
         #  Set to: htttp://{selenium-container-name}:port/wd/hub
         #  In our example, the container is named `selenium`
         #  and runs on port 4444
-        "http://localhost:4444/wd/hub",
+        "http://selenium:4444/wd/hub",
         options=chrome_options
     )
     selenium.implicitly_wait(5)
@@ -40,7 +39,6 @@ if __name__ == "__main__":
     print("getting remote driver...")
     driver = get_remote_driver()
     driver.get("https://leagueoflegends.fandom.com/es/wiki/Ofertas")
-
     #Wait 5 seconds until page load
     time.sleep(5)
     print("getting data from spreadsheet...")
