@@ -12,7 +12,7 @@ import time
 import os
 
 
-YOUR_SPREADSHEET_LINK = os.environ.get('SPREADSHEET')
+YOUR_SPREADSHEET_LINK = os.environ.get("SPREADSHEET")
 # instantiate a chrome options object so you can set the size and headless preference
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # Send me the screenshot and the list of found skins if we got someone
     if foundIt == True:
         send_email(found_skins)
-        print('checa your email julio :3')
+        print("checa your email julio :3")
     else:
-        print("""None skin was found :'(""")
+        print("None skin was found :'(")
     driver.close()
