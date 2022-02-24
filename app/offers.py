@@ -53,7 +53,7 @@ if __name__ == "__main__":
             xpath = f'//div[@data-champion="{skin["champion"]}" and contains(@data-skin,"{skin["skin"]}")]'
             if driver.find_element_by_xpath(xpath).is_displayed():
                 # Take a screenshot just once
-                if foundIt == False:
+                if not foundIt:
                     string = f'''document.evaluate(`{xpath}`,
                                         document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).
                                         singleNodeValue.scrollIntoView({{block:"center"}});'''
@@ -65,7 +65,7 @@ if __name__ == "__main__":
             pass
 
     # Send me the screenshot and the list of found skins if we got someone
-    if foundIt == True:
+    if foundIt:
         send_email(found_skins)
         print("checa your email julio :3")
     else:
